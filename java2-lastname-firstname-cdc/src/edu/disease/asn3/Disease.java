@@ -1,11 +1,16 @@
-package edu.disease.asn2;
+package edu.disease.asn3;
 
+
+
+import java.io.Serializable;
 import java.util.UUID;
 
 		
-	public abstract class Disease {
+	public abstract class Disease implements Serializable {
 		    UUID diseaseId;
 		    String Name;
+		    
+		    
 		    
 		    
 			public Disease(UUID diseaseId, String name) {
@@ -50,7 +55,7 @@ import java.util.UUID;
 			}
 			@Override
 			public String toString() {
-				return "Disease [diseaseId=" + diseaseId + ", Name=" + Name + "]";
+			return "Disease [diseaseId=" + diseaseId + ", Name=" + Name + "]";
 				
 			
 			}
@@ -58,6 +63,7 @@ import java.util.UUID;
 			
 			
 		}
+
 
 
 

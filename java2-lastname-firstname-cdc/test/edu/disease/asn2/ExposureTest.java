@@ -1,8 +1,6 @@
-package edu.disease.asn1;
+package edu.disease.asn2;
 
-
-	
-	import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertFalse;
 	import static org.junit.Assert.assertNotNull;
 	import static org.junit.Assert.assertTrue;
 	import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,12 +8,10 @@ package edu.disease.asn1;
 	import java.util.UUID;
 	import org.junit.Before;
 	import org.junit.Test;
-	import edu.disease.asn1.Exposure;
-	
-	
-public class ExposureTest {
+
+import edu.disease.asn1.Exposure;
+	public class ExposureTest {
 		private Exposure exposure;
-		
 		@Before
 		public void setUp() {
 			final UUID uuid = UUID.randomUUID();
@@ -23,10 +19,8 @@ public class ExposureTest {
 			exposure.setTime(LocalDateTime.now());
 			exposure.setExposure("D");
 		}
-		
 		@Test
-		public void testExposurePostiveScenario()
-		{
+		public void testExposurePostiveScenario() {
 			assertNotNull(exposure.toString());
 			assertNotNull(exposure.getTime());
 			assertNotNull(exposure.getPatientId());
@@ -49,19 +43,11 @@ public class ExposureTest {
 			exposure.setPatientId(null);
 			exposureObjEquals.setTime(null);
 			assertFalse(exposure.equals(exposureObjEquals));
-			
 		}
-		
-		
 		@Test(expected = IllegalArgumentException.class)
-		public void testException()
-		{
+		public void testException() {
 			exposure.setExposure(null);
 		}
-		
-	}
+	
 
-
-
-
-
+}

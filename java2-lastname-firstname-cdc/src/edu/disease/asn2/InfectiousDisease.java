@@ -1,17 +1,26 @@
 package edu.disease.asn2;
 
-public class InfectiousDisease extends Disease {
-	
-	
-	String []  s1={"Cancer","Obesity","Cold","Chickenpox","Allergies"};
+import java.util.UUID;
 
-	@Override
-	public String[] GetExamples() {
-		// TODO Auto-generated method stub
-		return s1;
+public class InfectiousDisease extends Disease{
+	
+		
+		
+		String []  s1={"Cancer","Obesity","Cold","Chickenpox","Allergies"};
+
+		@Override
+		public String[] GetExamples() {
+			// TODO Auto-generated method stub
+			return s1;
+		}
+		public InfectiousDisease(UUID diseaseId,String name) {
+			super(diseaseId,name);
+			
+		}
+		
+		
+
+
 	}
-	
-	
 
 
-}

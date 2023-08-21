@@ -1,11 +1,12 @@
-package edu.disease.asn1;
-	
+package edu.disease.asn3;
+
 import java.util.UUID;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
 
-	public class Exposure {
+	public class Exposure implements Serializable{
 		static Scanner s=new Scanner(System.in);
 		private UUID patientId;
 		private LocalDateTime time;

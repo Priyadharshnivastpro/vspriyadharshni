@@ -1,69 +1,98 @@
 package edu.disease.asn1;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-class PatientTest {
-
-	@Test
-	void testHashCode() {
-		fail("Not yet implemented");
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
+import java.util.UUID;
+import org.junit.Before;
+import org.junit.Test;
+public class PatientTest {
+	private Patient patient;
+	
+	private static final String FIRST_NAME = "firstName";
+	
+	private static final String LAST_NAME = "lastName";
+	
+	private Exposure exposure;
+	
+	@Before
+	public void setUp() {
+		final UUID uuid = UUID.randomUUID();
+		exposure = new Exposure(uuid);
+		exposure.setTime(LocalDateTime.now());
+		exposure.setExposure("D");
+		patient = new Patient(1,1);
+		patient.setDiseaseIds(new UUID[] {UUID.randomUUID(), UUID.randomUUID()});
+		patient.setExposures(new Exposure[] {exposure});
+		patient.setFirstName(FIRST_NAME);
+		patient.setLastName(LAST_NAME);
+		patient.setPatientId(uuid);
 	}
-
+	
 	@Test
-	void testPatient() {
-		fail("Not yet implemented");
+	public void testPatientPostiveScenario()
+	{
+		assertNotNull(patient.toString());
+		assertNotNull(patient.getDiseaseIds());
+		assertNotNull(patient.getExposures());
+		assertNotNull(patient.getFirstName());
+		assertNotNull(patient.getLastName());
+		assertNotNull(patient.hashCode());
+		assertNotNull(patient.getPatientId());
+		final Patient patientObj = patient;
+		assertTrue(patient.equals(patientObj));
+		assertTrue(patient.equals(patient));
+		assertFalse(patient.equals(null));
+		final Patient patientObjEquals = new Patient(1,1);
+		patientObjEquals.setPatientId(patient.getPatientId());
+		assertTrue(patient.equals(patientObjEquals));
+		assertFalse(patient.equals(null));
+		patientObjEquals.setPatientId(null);
+		assertFalse(patient.equals(patientObjEquals));
+		
 	}
-
+	
 	@Test
-	void testAddDiseasId() {
-		fail("Not yet implemented");
+	public void testAddDisease()
+	{
+	    final Patient patientTest = new Patient(3,3);
+	    patientTest.addDiseasId(UUID.randomUUID());
+	    patientTest.addDiseasId(UUID.randomUUID());
+	    patientTest.addDiseasId(UUID.randomUUID());
+	    System.out.println(patientTest.getDiseaseIds()[0]);
+		assertEquals(3, patientTest.getDiseaseIds().length);
 	}
-
+	
 	@Test
-	void testAddExposure() {
-		fail("Not yet implemented");
+	public void testAddExposure()
+	{
+	    final Patient patientTest = new Patient(3,3);
+	    patientTest.addExposure(exposure);
+	    patientTest.addExposure(exposure);
+	    patientTest.addExposure(exposure);
+	    System.out.println(patientTest.getExposures()[0]);
+		assertEquals(3, patientTest.getExposures().length);
 	}
-
-	@Test
-	void testGetPatientId() {
-		fail("Not yet implemented");
+	
+	
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testAddDiseaseException()
+	{
+		patient.addDiseasId(UUID.randomUUID());
 	}
-
-	@Test
-	void testSetPatientId() {
-		fail("Not yet implemented");
+	
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testAddExposureException()
+	{
+		patient.addExposure(exposure);
 	}
-
-	@Test
-	void testGetFirstName() {
-		fail("Not yet implemented");
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testExceptionPatient()
+	{
+		Patient patientTest = new Patient(-1, -1);
+		
 	}
-
-	@Test
-	void testSetFirstName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetLastName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetLastName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEqualsObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
 }

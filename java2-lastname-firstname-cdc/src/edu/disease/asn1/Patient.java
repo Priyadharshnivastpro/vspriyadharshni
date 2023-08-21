@@ -1,4 +1,6 @@
 package edu.disease.asn1;
+
+
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -69,6 +71,22 @@ public void setFirstName(String firstName) {
 	this.firstName = firstName;
 }
 
+public Exposure[] getExposures() {
+	return exposures;
+}
+
+public void setExposures(Exposure[] exposures) {
+	this.exposures = exposures;
+}
+
+public UUID[] getDiseaseIds() {
+	return diseaseIds;
+}
+
+public void setDiseaseIds(UUID[] diseaseIds) {
+	this.diseaseIds = diseaseIds;
+}
+
 public String getLastName() {
 	return lastName;
 }
@@ -112,3 +130,5 @@ public String toString() {
 
 
 }
+
+
